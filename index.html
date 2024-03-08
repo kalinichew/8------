@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор картинок и поздравлений</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+
+        body {
+            margin: 0 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #greetings-container {
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        #greetings-text {
+            color: #ef4924; 
+            font-size: 24px;
+            font-weight: bold;
+            font-family: "Pacifico", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        #image-container {
+            text-align: center;
+        }
+
+        #image-container img {
+            max-width: 100%;
+            max-height: 400px;
+            margin: 20px 0;
+        }
+
+        #footer {
+            text-align: center;
+            padding-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="greetings-container" class="container">
+        <h3 id="greetings-text">С праздником весны! Пусть в вашей жизни будет больше светлых моментов и веселья.</h3>
+    </div>
+
+    <div id="image-container" class="container">
+        <img id="displayed-image" src="data/1.jpg" alt="Картинка" class="img-fluid">
+    </div>
+
+    <div id="footer" class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="btn btn-primary" onclick="changeContent()">Поздравляй меня ЕЩЁ!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        const greetingsArray = [
+        "Пусть этот день принесет вам радость и улыбки.",
+        "Поздравляю вас с весенним праздником! Пусть ваши дни будут полны счастья и тепла.",
+        "Желаю вам ярких эмоций, красивых моментов и вдохновляющих событий!",
+        "Пусть ваши сердца будут полны любви и тепла.",
+        "Пусть ваши мечты сбудутся, а каждый день будет наполнен удивительными возможностями.",
+        "С праздником весны! Пусть в вашей жизни будет больше светлых моментов и веселья.",
+        "Пусть каждый день будет особенным и запоминающимся.",
+        "Пусть вас окружают забота и внимание каждый день.",
+        "Желаю вам красоты в каждом моменте, удачи во всех начинаниях и море позитивных эмоций.",
+        "Пусть в вашей жизни будет больше улыбок и радости.",
+        "Пусть вас окружают только положительные события и забота близких.",
+        "Пусть этот день принесет вам море вдохновения, уюта и теплых слов.",
+        "Пусть в вашей жизни будет много светлых дней и ярких моментов.",
+        "Желаю вам крепкого здоровья, счастья в личной жизни и успехов во всех начинаниях.",
+        "Пусть вас окружает внимание и любовь близких.",
+        "Пусть вас ждут только светлые перспективы.",
+        "Желаю вам радости, уверенности в себе и безграничной любви.",
+        "Пусть каждый момент этого дня приносит вам удовольствие и незабываемые впечатления.",
+        "Пусть ваша жизнь будет насыщенной и счастливой.",
+        "Пусть в вашем сердце всегда царит весна и любовь."
+        ];
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function changeContent() {
+            var greetingsElement = document.getElementById("greetings-text");
+            var imageElement = document.getElementById("displayed-image");
+
+            // Выбираем случайное поздравление
+            var randomGreetingIndex = getRandomInt(0, greetingsArray.length - 1);
+            var randomGreeting = greetingsArray[randomGreetingIndex];
+
+            // Выбираем случайное изображение
+            var randomImageNumber = getRandomInt(1, 66);
+            var imagePath = "data/" + randomImageNumber + ".jpg";
+
+            // Обновляем контент
+            greetingsElement.textContent = randomGreeting;
+            imageElement.src = imagePath;
+            imageElement.alt = "Картинка " + randomImageNumber;
+        }
+    </script>
+</body>
+</html>
